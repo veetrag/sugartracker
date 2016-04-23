@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sugar Intake Tracker</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3809140250739395/3138006460</string>
+    <string name="title_activity_history_graph">History</string>
+</resources>
