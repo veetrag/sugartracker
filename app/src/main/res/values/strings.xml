@@ -2,4 +2,42 @@
     <string name="app_name">Sugar Intake Tracker</string>
     <string name="banner_ad_unit_id">ca-app-pub-3809140250739395/3138006460</string>
     <string name="title_activity_history_graph">History</string>
+    <string name="reduce_sugar_tips"><Data>
+        <![CDATA[ <b>Tips to reduce sugar consumption</b><br>
+        <p><li>&#8226;  Drink water or other calorie-free drinks instead of sugary sodas or sports drinks.</p>
+<p><li>&#8226;  Avoid desserts and replace them with fruit bowl.</p>
+<p><li>&#8226;  Dont use diet variants of products, usually they contain more sugar to compensate for low fat. </p>
+<p><li>&#8226;  Eat fruits instead of drinking juice.</p>
+<p><li>&#8226;  Monitor your daily added sugar intake.</p>
+<p><li>&#8226;  Check sugar content in product before purchasing. </p> ]]>
+
+  </Data>  </string>
+
+    <string name="sugar_measurements"><Data>
+        <![CDATA[ <b>Added Sugar in Common Food</b><br>
+        <p><li>&#8226;  Soft Drinks - 11g/100ml</p>
+<p><li>&#8226;  Sweetened fruit juice - 9g/100ml</p>
+<p><li>&#8226;  Chocolate - 63g/100g </p>
+<p><li>&#8226;  Chocolate-coated biscuits - 45g/100g</p>
+<p><li>&#8226;  Fruit yoghurt - 17g/100g</p>
+<p><li>&#8226;  Ketchup - 28g/100g </p>
+<p><li>&#8226;  Salad Dressings - 18g/100g </p>
+<p><li>&#8226;  Chocolate Milkshake - 62g/100g </p>
+<p><li>&#8226;  Salad Dressings - 18g/100g </p>
+<p><li>&#8226;  Salad Dressings - 18g/100g </p>
+
+]]>
+
+  </Data>  </string>
+
+        <string name="about_us"><Data>
+        <![CDATA[ <b>About us</b><br>
+        <p>We are trying to build an app to help people reduce intake of added sugar. But our idea behind the app is clear - provide a simple tool so that people can monitor daily sugar intake.</p>
+        <p>We are updating this app regularly to add more information. We would love to get suggestions from our users on what features they would love to see in the app. Please provide suggestions by clicking on the button below.
+        </p>
+
+]]>
+
+  </Data>  </string>
+
 </resources>

@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.targetsmile.sugarintaketracker">
 
+    <permission android:name="com.targetsmile.sugarintaketracker.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.targetsmile.sugarintaketracker.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -16,6 +22,17 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.targetsmile.dentalcare" />
+            </intent-filter>
+        </receiver>
+
 
         <activity android:name=".MainTrackerActivity">
             <intent-filter>
@@ -31,7 +48,22 @@
         <activity
             android:name=".HistoryGraph"
             android:label="@string/title_activity_history_graph"
-            android:parentActivityName=".MainTrackerActivity" ></activity>
+            android:parentActivityName=".MainTrackerActivity" />
+        <activity
+            android:name=".activities.InformationGatewayActivity"
+            />
+        <activity android:name=".activities.SugarMeasurements" />
+        <activity android:name=".activities.About" />
+        <activity android:name=".activities.HowToReduce"></activity>
+
+        <service
+            android:name=".PushNotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

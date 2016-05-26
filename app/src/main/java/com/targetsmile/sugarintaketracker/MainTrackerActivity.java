@@ -1,18 +1,24 @@
 package com.targetsmile.sugarintaketracker;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.apptentive.android.sdk.Apptentive;
 import com.flurry.android.FlurryAgent;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.targetsmile.sugarintaketracker.activities.InformationGatewayActivity;
 
 import java.util.Calendar;
 
@@ -23,6 +29,7 @@ public class MainTrackerActivity extends AppCompatActivity {
     TextView messageView;
     TextView totalSugarIntake;
     GridView gridView;
+    String[][] DAILY_UNITS_CONSUMED;
 
     public String getCurrentDate()
     {
@@ -88,13 +95,16 @@ public class MainTrackerActivity extends AppCompatActivity {
 
         Cursor cursor = databaseHelper.getTodaysData(getToday());
 
-        String[][] DAILY_UNITS_CONSUMED = new String[cursor.getCount()][2];
+        DAILY_UNITS_CONSUMED = new String[cursor.getCount()][3];
 
-        if(cursor.getCount() == 0)
+
+//        if(cursor.getCount() == 0)
+//        {
+//            return;
+//        }
+//        else
+
         {
-            return;
-        }
-        else {
             stringBuffer = new StringBuffer();
 
             while(cursor.moveToNext())
@@ -106,6 +116,8 @@ public class MainTrackerActivity extends AppCompatActivity {
 
                 DAILY_UNITS_CONSUMED[counter][0] = cursor.getString(3);
                 DAILY_UNITS_CONSUMED[counter][1] = parts[1];
+                DAILY_UNITS_CONSUMED[counter][2] = cursor.getString(0);
+
                 counter++;
             }
 
@@ -147,6 +159,8 @@ public class MainTrackerActivity extends AppCompatActivity {
         adView.loadAd(adRequest);
 
 
+        registerGCM();
+
 
     }
 
@@ -156,6 +170,21 @@ public class MainTrackerActivity extends AppCompatActivity {
         super.onStart();
 
     }
+
+
+    public void startInformationGateway(View view)
+    {
+        Intent myIntent = new Intent(MainTrackerActivity.this, InformationGatewayActivity.class);
+        // myIntent.putExtra("remedyid","badbreath");
+        this.startActivity(myIntent);
+        FlurryAgent.logEvent("Start Info Gateway");
+
+
+
+    }
+
+
+
 
 
     @Override
@@ -186,4 +215,52 @@ public class MainTrackerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void itemClicked(final int position) {
+
+
+
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.presence_offline)
+                .setTitle("Confirmation")
+                .setMessage("Do you want to delete this entry?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which)
+                    {
+                        databaseHelper.deleteEntryById(DAILY_UNITS_CONSUMED[position][2]);
+                        FlurryAgent.logEvent("Deleting entry - " + DAILY_UNITS_CONSUMED[position][0]);
+                        showData();
+
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+
+      //  Toast.makeText(this,DAILY_UNITS_CONSUMED[position][0],Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void registerGCM()
+    {
+        GCMClientManager pushClientManager = new GCMClientManager(this, "174285893703");
+        pushClientManager.registerIfNeeded(new GCMClientManager.RegistrationCompletedHandler() {
+            @Override
+            public void onSuccess(String registrationId, boolean isNewRegistration) {
+
+                Log.d("*** Registration id", registrationId);
+                //send this registrationId to your server
+                Apptentive.setPushNotificationIntegration(Apptentive.PUSH_PROVIDER_APPTENTIVE, registrationId);
+
+
+            }
+
+            @Override
+            public void onFailure(String ex) {
+                super.onFailure(ex);
+            }
+        });
+    }
 }

@@ -116,4 +116,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean deleteEntryById(String id)
+    {
+        Log.d("Delete ", "trying");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // String testQuery = "delete from " + TABLE_NAME + " where " + COLUMN_ID + " = '" + id + "'";
+
+        db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[] { id });
+
+        // Log.d("Delete ", "done " + testQuery);
+
+        return true;
+    }
+
 }

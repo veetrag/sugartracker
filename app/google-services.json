@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "174285893703",
+    "project_id": "sugar-intake-tracker"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174285893703:android:fdb16043d93025c4",
+        "android_client_info": {
+          "package_name": "com.targetsmile.sugarintaketracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMRjq8RziiMrBf3tAKR8fbiyyKlueUtwg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

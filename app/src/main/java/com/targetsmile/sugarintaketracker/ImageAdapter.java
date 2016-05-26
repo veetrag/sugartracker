@@ -23,7 +23,7 @@ public class ImageAdapter extends BaseAdapter {
         this.sugarConsumedValues = sugarConsumedValues;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,6 +61,14 @@ public class ImageAdapter extends BaseAdapter {
             } else {
                 imageView.setImageResource(R.drawable.roundshapebutton5);
             }
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    ((MainTrackerActivity)context).itemClicked(position);
+                }
+            });
 
         } else {
             gridView = (View) convertView;

@@ -12,8 +12,6 @@
     android:background="#fff">
 
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -133,6 +131,29 @@
         android:choiceMode="none"
         android:layout_below="@+id/totalSugarIntake"
         android:layout_above="@+id/linearLayout" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Details"
+        android:id="@+id/button"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:onClick="startInformationGateway"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Sugar Intake Tracker"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:textSize="20sp" />
 
 
 </RelativeLayout>
